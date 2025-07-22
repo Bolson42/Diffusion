@@ -1,3 +1,5 @@
+
+
 % Laplacian with weighted edges and loops at node 1 2 4 and 5 of edge
 % weights 1
 
@@ -20,14 +22,22 @@ A = [1 .2 0 .5 0;
 % degree matrix
 D = diag(sum(A));
 
-L = D - A
+%Laplacian
 
-%randow walk
+L = D - A;
+disp("laplacian Matrix:")
+disp(L)
 
-I = eye(5);
+%eignevalues and vectors
+[V,D] = eig(L);
+
+disp('diagonal matrix of eigenvalues:');
+disp(diag(D));
+
+disp('Eigenvectors:');
+disp(V);
 
 
-L_rw = I - inv(D)*A
 
 
 

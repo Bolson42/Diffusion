@@ -13,14 +13,14 @@
 %    .5
 
 % adjacent matrix inlcudes weight and loops
-A = [1 .2 0 .5 0;
-     .2 1 .8 0 0;
+A = [0 .2 0 .5 0;
+     .2 0 .8 0 0;
      0 .8 0 .7 .9;
-     .5 0 .7 1 .1;
-     0 0 .9 .1 1];
+     .5 0 .7 0 .1;
+     0 0 .9 .1 0];
 
 % degree matrix
-D = diag(sum(A));
+D = diag(sum(A))
 
 %Laplacian
 
@@ -38,7 +38,10 @@ disp('Eigenvectors:');
 disp(V);
 
 
+% Laplacian random walk test 
+P = inv(D)*A;
+I = eye(5);
+L = I - P;
 
-
-
+disp(L)
 

@@ -20,28 +20,39 @@ A = [0 .2 0 .5 0;
      0 0 .9 .1 0];
 
 % degree matrix
-D = diag(sum(A))
+D = diag(sum(A));
 
 %Laplacian
 
-L = D - A;
-disp("laplacian Matrix:")
-disp(L)
+% L = D - A;
+% disp("laplacian Matrix:")
+% disp(L)
 
 %eignevalues and vectors
-[V,D] = eig(L);
-
-disp('diagonal matrix of eigenvalues:');
-disp(diag(D));
-
-disp('Eigenvectors:');
-disp(V);
+% [V,D] = eig(L);
+% 
+% disp('diagonal matrix of eigenvalues:');
+% disp(diag(D));
+% 
+% disp('Eigenvectors:');
+% disp(V);
 
 
 % Laplacian random walk test 
-P = inv(D)*A;
-I = eye(5);
-L = I - P;
 
-disp(L)
+L_rw = [1/2    -1/4     0      -1/4     0;
+       -3/20    3/10   -3/20    0       0;
+        0    -1/30     1/10  -1/30   -1/30;
+      -7/30     0     -7/30    7/10   -7/30;
+        0       0     -9/20  -9/20    9/10 ];
 
+
+disp(L_rw)
+
+[V, D] = eig(L_f); 
+
+disp('Eigenvalues:')
+disp(diag(D))
+
+disp('Eigenvectors (columns):')
+disp(V)

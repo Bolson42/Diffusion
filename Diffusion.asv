@@ -19,7 +19,7 @@ A = [0 .2 0 .5 0;
      0 0 .9 .1 0];
 
 % degree matrix
-D = diag(sum(A,2));
+D = diag(sum(A));
 
 %Laplacian
 
@@ -55,7 +55,7 @@ end
 t = linspace(0,1,100);
 u_t = zeros(n,length(t));
 for j = 1:length(t)
-    u_sum = zeros(n,1);  % Reset sum for each time step
+    u_sum = zeros(n,1);  
     
     for k = 1:n
         lambda_k = D(k,k);
@@ -66,24 +66,6 @@ for j = 1:length(t)
     u_t(:,j) = u_sum;  % Store result
 end
 
+figure;
 
-disp(u_t)
-
-% Laplacian random walk test 
-
-% L_rw = [1/2    -1/4     0      -1/4     0;
-%        -3/20    3/10   -3/20    0       0;
-%         0    -1/30     1/10  -1/30   -1/30;
-%       -7/30     0     -7/30    7/10   -7/30;
-%         0       0     -9/20  -9/20    9/10 ];
-% 
-% 
-% disp(L_rw)
-% 
-% [V, D] = eig(L_f); 
-% 
-% disp('Eigenvalues:')
-% disp(diag(D))
-% 
-% disp('Eigenvectors (columns):')
-% disp(V)
+plot(u_t(1,:))

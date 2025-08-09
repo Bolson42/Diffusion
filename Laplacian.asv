@@ -1,6 +1,7 @@
 
 
-% Laplacian with weighted edges
+% Laplacian with weighted edges and loops at node 1 2 4 and 5 of edge
+% weights 1
 
 
 %    .8
@@ -52,21 +53,21 @@ a(j) = dot(v_j, u0)/norm(v_j)^2;
 
 end
 
-t = linspace(0,1,100);
+t = linspace(0,2,100);
 u_t = zeros(n,length(t));
 for j = 1:length(t)
-    u_sum = zeros(n,1);  % Reset sum for each time step
+   
     
-    for k = 1:n
-        lambda_k = D(k,k);
-        v_k = V(:,k);
-        u_sum = u_sum + a(k) * exp(-lambda_k * t(j)) * v_k;
-    end
+  
+    lambda_k = D(k,k);
+    v_k = V(:,k);
+    u_sum = u_sum + a(k) * exp(-lambda_k * t(j)) * v_k;
+  
 
     u_t(:,j) = u_sum;  % Store result
 end
 
-
+% Display or plot result
 disp(u_t)
 
 % Laplacian random walk test 

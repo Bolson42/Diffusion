@@ -12,11 +12,11 @@
 %    .5
 
 % adjacent matrix inlcudes weight and loops
-A = [0 .2 0 .5 0;
+A = [.1 .2 0 .5 0;
      .2 0 .8 0 0;
-     0 .8 0 .7 .9;
-     .5 0 .7 0 .1;
-     0 0 .9 .1 0];
+     0 .8 .2 .7 .9;
+     .5 0 .7 0.9 .1;
+     0 0 .9 .1 0.8];
 
 % degree matrix
 D = diag(sum(A,2));
@@ -36,38 +36,6 @@ disp(diag(D));
 disp('Eigenvectors:');
 disp(V);
 
-% intial condition 
-
-u0 = [0 0 1 0 0]';
-
-% coefficients
-
-n = length(u0);     
-a = zeros(n, 1);
-
-for j = 1:n 
-v_j = V(:, j);
-
-a(j) = dot(v_j, u0)/norm(v_j)^2;
-
-end
-
-t = linspace(0,1,100);
-u_t = zeros(n,length(t));
-for j = 1:length(t)
-    u_sum = zeros(n,1);  % Reset sum for each time step
-    
-    for k = 1:n
-        lambda_k = D(k,k);
-        v_k = V(:,k);
-        u_sum = u_sum + a(k) * exp(-lambda_k * t(j)) * v_k;
-    end
-
-    u_t(:,j) = u_sum;  % Store result
-end
-
-
-disp(u_t)
 
 % Laplacian random walk test 
 
@@ -87,3 +55,6 @@ disp(u_t)
 % 
 % disp('Eigenvectors (columns):')
 % disp(V)
+
+
+

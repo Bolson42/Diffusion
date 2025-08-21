@@ -9,17 +9,18 @@
 %    .5
 
 % adjacent matrix includes weight and loops
-x_11 = 0;
+x_11 = .2;
 x_22 = 1;
-x_33 = 1;
-x_44 = 1;
-x_55 = 1;
+x_33 = .6;
+x_44 = .9;
+x_55 = 0;
 
 A = [x_11 .2 0 .5 0;
      .2 x_22 .8 0 0;
       0 .8 x_33 .7 .9;
      .5 0 .7 x_44 .1;
       0 0 .9 .1 x_55];
+
 % degree matrix
 D = diag(sum(A));
 
@@ -54,7 +55,7 @@ a(j) = dot(v_j, u0)/norm(v_j)^2;
 
 end
 
-t = linspace(0,5,100);
+t = linspace(0,50,100);
 u_t = zeros(n,length(t));
 
 for j = 1:length(t)
@@ -66,12 +67,21 @@ for j = 1:length(t)
         u_sum = u_sum + a(k) * exp(-lambda_k * t(j)) * v_k;
     end
 
-    u_t(:,j) = u_sum;  % Store result
+    u_t(:,j) = u_sum;  % Stores results
 end
+
 
 figure;
 hold on;
 
+colors = lines(n); 
 for i = 1:n
-    plot(t, u_t(i,:));
+    plot(t, u_t(i,:), 'Color', colors(i,:), 'LineWidth', 1.5);
 end
+
+xlabel('Time t');
+ylabel('u_i(t)');
+title('Diffusion');
+
+legend({'Node 1','Node 2','Node 3','Node 4','Node 5'}, 'Location','northeast');
+grid on;
